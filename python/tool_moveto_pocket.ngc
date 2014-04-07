@@ -1,0 +1,9 @@
+; parameter: last_slot
+o<tool_moveto_pocket> sub  
+o100 if [EXISTS[#<_ini[change_position]x>]]
+     g53 g0 X #<_ini[change_position]x> Y [#<_ini[change_position]y> + #1 * #<_ini[tool_holder_delta]y>]
+     g53 g0 Z #<_ini[change_position]blow>
+o100 endif
+o<tool_moveto_pocket> endsub  
+
+m2

@@ -1,0 +1,18 @@
+T1 P0 D1.587500 ;1/16" 2 flute flat endmill 
+T2 P1 D1.000000 Z-0.829873 ;1mm twist drill 
+T3 P2 Z-4.806226 ;
+T4 P3 D3.175000 Z-0.004327 ;1/8" 2 flute flat endmill 
+T5 P4 ;added 20140322 
+T6 P5 ;added 20140322 
+T7 P6 ;added 20140322 
+T8 P7 ;added 20140322 
+T9 P8 ;added 20140322 
+T10 P9 ;added 20140322 
+T11 P10 ;added 20140322 
+T12 P11 ;added 20140322 
+T13 P12 ;added 20140322 
+T14 P13 ;added 20140405 
+T15 P14 ;added 20140405 
+T16 P15 ;added 20140405 
+T17 P16 ;added 20140405 
+T18 P17 ;added 20140405 

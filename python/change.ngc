@@ -1,0 +1,39 @@
+O<change> sub
+
+o200 if [#<_current_tool> NE #<_selected_tool>]
+
+M5 (turn off spindle)
+G53 G0 Z0 (retract spindle)
+M73 (auto-restore modal settings on return)
+G4 P #<_ini[dwell]spindle_off> (Wait for spindle to stop.  Replace with pin from VFD)
+
+; unload previous tool
+o300 if [#<_current_pocket> GT 0]
+     o<tool_moveto_pocket> call [#<_current_pocket>-1]  
+     g53 g1 f750 Z #<_ini[change_position]z>
+     M64 P #<_ini[pins]lock> ; unlock toolholder
+     ; TODO wait for unlock pin
+     G4  P 1
+     g53 g0 Z #<_ini[tool_holder_clear]z>
+o300 endif
+
+; go to new tool
+O310 if [#<_selected_pocket> GT 0]
+    M64 P #<_ini[pins]lock> ; unlock toolholder
+    o<tool_moveto_pocket> call [#<_selected_pocket>-1]  
+    M64 P #<_ini[pins]blow> ; set flush pin
+    G4  P #<_ini[dwell]clean_tool> 
+    g53 g1 f750 Z #<_ini[change_position]z>
+    M65 P #<_ini[pins]blow> ; drop flush pin
+O310 endif
+
+M65 P #<_ini[pins]lock> ; lock toolholder
+G4  P #<_ini[dwell]new_tool> 
+G53 G0 Z0  (retract spindle)
+
+G0 X0 Y0
+(return to part location)
+o200 endif
+; succeed by returning a positive value
+o<change> endsub [1]
+m2
